@@ -54,9 +54,12 @@ public class Restaurante {
 		r1.importesCarta(r1.elegirCarta(cartas));
 	}
 	
+	
+	// Método encargado de mostrar solo los platos disponibles, le pasamos como parámetro una de las Cartas previamente creadas
 	public void mostrarCarta(Carta cartas) {
 		System.out.println("Platos disponibles de la carta: " + cartas.getNombre());
 		System.out.println("### Platos ###");
+		//Recorremos los atributos de la Carta para poder acceder a ellos mediante los métodos Get
 		for(int i = 0; i<cartas.getPlatos().length; i++) {
 			if(cartas.getPlatos()[i].isDisponible() == true) {
 				System.out.println(cartas.getPlatos()[i].getNombre() + "  -----> " + 
@@ -64,24 +67,33 @@ public class Restaurante {
 			}
 		}
 	}
+	
+	//Método encargado de dar la opción al usuario de elegir una carta entre las que le pasemos por parámetro en Array
+	// y nos retorna un Objeto de tipo Carta que será la carta elegida por el usuario
 	public Carta elegirCarta(Carta [] cartas) {
 		Scanner sc = new Scanner(System.in);
 		
+		//Recorremos el array de cartas para poder mostrarle las opciones al usuario
 		for(int i = 0; i<cartas.length;i++) {
+			//Le sumamos al indice <i> un "1" para poder dejar mejor visible el numero de cartas y no empezar de 0
 			System.out.println("Carta " + (i+1) + " :" + cartas[i].getNombre());
 		}
 		System.out.println("Porfavor elige una carta: ");
 		int valor = sc.nextInt();
 		System.out.println("Has elegido la carta: " + valor);
-		
+		//a la hora de devolver la carta elegida le restamos el 1 previamente añadido al valor para devolver correctamente el indice de la carta
 		return cartas[valor - 1];
 	}
+	
+	//Método para mostrar todos los importes de la carta elegida por el usuario previamente, haciendo uso del método elegirCarta() que nos devuelve
+	// un objeto de tipo Carta el cual ha elegido el usuario
 	public void importesCarta(Carta carta) {
 		
 	System.out.println("Importes de los productos de la carta: " + carta.getNombre());
 	System.out.println("");
 	System.out.println("### Platos ###");
 	for(int i = 0; i<carta.getPlatos().length;i++) {
+		// dejamos claro los productos que no estan disponibles pero se muestran aún asi
 		if(carta.getPlatos()[i].isDisponible() == false) {
 			System.out.println(carta.getPlatos()[i].getNombre() + "  -----> " + 
 					   carta.getPlatos()[i].getPrecio()  + "  --> " + "(No disponible)");
@@ -89,7 +101,6 @@ public class Restaurante {
 			System.out.println(carta.getPlatos()[i].getNombre() + "  -----> " + 
 					   carta.getPlatos()[i].getPrecio());
 		}
-		
 	}
 	System.out.println("");
 	System.out.println("### Bebidas ###");
@@ -99,5 +110,4 @@ public class Restaurante {
 		
 		}
 	}
-	
 }

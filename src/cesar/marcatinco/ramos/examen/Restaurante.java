@@ -47,11 +47,11 @@ public class Restaurante {
 		r1.mostrarCarta(c2);
 		
 		// Comprobamos el método elegirCarta() el cual le pasaremos como argumento el array de Cartas previamente creado 
-		r1.elegirCarta(cartas);
+		
 		
 		//Finalmente el método importesCarta() llamará al método elegirCarta para que nos devuelva,
 		// la carta seleccionada por el cliente entre el array de cartas y mostraremos el precio y los productos de esta.
-		r1.importesCarta(r1.elegirCarta(cartas));
+		
 	}
 	
 	
@@ -62,8 +62,7 @@ public class Restaurante {
 		//Recorremos los atributos de la Carta para poder acceder a ellos mediante los métodos Get
 		for(int i = 0; i<cartas.getPlatos().length; i++) {
 			if(cartas.getPlatos()[i].isDisponible() == true) {
-				System.out.println(cartas.getPlatos()[i].getNombre() + "  -----> " + 
-						   cartas.getPlatos()[i].getPrecio());
+				System.out.println(cartas.getPlatos()[i].getNombre());
 			}
 		}
 	}
